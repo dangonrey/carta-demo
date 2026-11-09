@@ -2,141 +2,333 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2f3a">
 <title>Taberna El Levante · Carta</title>
+<meta name="description" content="Carta digital de Taberna El Levante, cocina gaditana en Cádiz.">
 <style>
-  :root{
-    --bg:#faf6ef; --card:#fff; --ink:#2b2420; --muted:#7a6e64;
-    --brand:#b5462f; --brand-2:#1f4e5f; --line:#ece4d8;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink)}
-  header{background:linear-gradient(160deg,var(--brand-2),#163a47);color:#fff;padding:52px 20px 22px;text-align:center}
-  header h1{margin:0;font-family:Georgia,serif;font-size:28px;letter-spacing:.5px}
-  header p{margin:6px 0 0;opacity:.85;font-size:14px}
-  .lang{position:absolute;top:14px;right:14px;display:flex;gap:4px}
-  .lang button{background:rgba(255,255,255,.15);border:0;color:#fff;padding:6px 10px;border-radius:8px;font-weight:600;cursor:pointer}
-  .lang button.on{background:#fff;color:var(--brand-2)}
-  .wrap{max-width:640px;margin:0 auto;padding:0 14px 60px}
-  .daily{background:var(--brand);color:#fff;border-radius:14px;padding:14px 16px;margin:16px 0 4px;box-shadow:0 4px 14px rgba(181,70,47,.25)}
-  .daily small{text-transform:uppercase;letter-spacing:1px;opacity:.85;font-size:11px;font-weight:700}
-  .daily div{font-size:16px;font-weight:600;margin-top:3px}
-  .search{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px;margin:12px 0 0;background:#fff}
-  nav{position:sticky;top:0;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:12px 0;z-index:5;scrollbar-width:none}
-  nav::-webkit-scrollbar{display:none}
-  nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600}
-  nav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-  section h2{font-family:Georgia,serif;font-size:21px;margin:22px 0 10px;scroll-margin-top:64px}
-  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px;margin-bottom:10px;display:flex;justify-content:space-between;gap:12px}
-  .item h3{margin:0;font-size:16px}
-  .item p{margin:4px 0 6px;color:var(--muted);font-size:13.5px;line-height:1.35}
-  .price{font-weight:700;white-space:nowrap;text-align:right;font-size:15px}
-  .price small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-  .tags{display:flex;flex-wrap:wrap;gap:4px}
-  .tag{font-size:11px;padding:2px 7px;border-radius:6px;background:#f3ece1;color:#6b5a48}
-  .tag.star{background:#fde8d9;color:var(--brand);font-weight:700}
-  .tag.veg{background:#e2f2e3;color:#2f6b35}
-  .empty{text-align:center;color:var(--muted);padding:30px 0;display:none}
-  footer{text-align:center;color:var(--muted);font-size:12.5px;padding:24px 10px;line-height:1.6}
-  footer a{color:var(--brand-2);font-weight:600}
-  .legend{font-size:12px;color:var(--muted);margin-top:14px}
+:root{
+  --bg:#f7f2ea; --surface:#fffdf9; --ink:#1e1a17; --muted:#7b7068; --line:#ebe2d4;
+  --sea:#0f2f3a; --sea-2:#1c4b5a; --coral:#c4532f; --gold:#c9a35a; --ok:#2f7a4a;
+  --shadow:0 1px 2px rgba(30,26,23,.04),0 6px 20px rgba(30,26,23,.06);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#12100e; --surface:#1c1916; --ink:#f3ede5; --muted:#a59a8f; --line:#2c2722; --shadow:0 1px 2px rgba(0,0,0,.3);
+}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* ---------- Cabecera ---------- */
+.hero{position:relative;color:#fff;padding:22px 20px 30px;overflow:hidden;
+  background:radial-gradient(120% 80% at 80% 0%,#2a6476 0%,transparent 60%),linear-gradient(170deg,var(--sea-2),var(--sea) 70%)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:38px;background:var(--bg);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 38' preserveAspectRatio='none'%3E%3Cpath d='M0 20 C60 0 120 0 200 18 S340 38 400 14 V38 H0Z'/%3E%3C/svg%3E") center/100% 100%;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 38' preserveAspectRatio='none'%3E%3Cpath d='M0 20 C60 0 120 0 200 18 S340 38 400 14 V38 H0Z'/%3E%3C/svg%3E") center/100% 100%}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:680px;margin:0 auto}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;background:rgba(255,255,255,.12);padding:6px 11px;border-radius:999px;backdrop-filter:blur(6px)}
+.status i{width:8px;height:8px;border-radius:50%;background:#7be3a0;box-shadow:0 0 0 3px rgba(123,227,160,.25)}
+.status.closed i{background:#ff9b8a;box-shadow:0 0 0 3px rgba(255,155,138,.25)}
+.lang{display:flex;background:rgba(255,255,255,.12);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;color:#fff;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;opacity:.75}
+.lang button.on{background:#fff;color:var(--sea);opacity:1}
+.brand{text-align:center;max-width:680px;margin:18px auto 0;position:relative;z-index:1}
+.logo{width:74px;height:74px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid rgba(201,163,90,.7);background:rgba(255,255,255,.06);font-family:var(--serif);font-size:28px;color:var(--gold);letter-spacing:1px}
+.brand small{display:block;text-transform:uppercase;letter-spacing:3px;font-size:10.5px;color:var(--gold);font-weight:700}
+.brand h1{font-family:var(--serif);font-weight:500;font-size:36px;margin:6px 0 6px;letter-spacing:.3px}
+.brand p{margin:0;opacity:.8;font-size:14px}
+.chips{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.chips a{color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;border:1px solid rgba(255,255,255,.25);padding:7px 12px;border-radius:999px}
+
+main{max-width:680px;margin:0 auto;padding:0 16px 40px}
+
+/* ---------- Menú del día ---------- */
+.daily{position:relative;margin-top:6px;background:var(--surface);border-radius:20px;padding:18px 18px 16px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+.daily::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(var(--coral),var(--gold))}
+.daily-h{display:flex;justify-content:space-between;align-items:baseline}
+.daily-h b{font-family:var(--serif);font-size:19px;font-weight:600}
+.daily-h span{font-weight:800;color:var(--coral);font-size:18px}
+.daily ol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px}
+.daily li{display:flex;gap:10px;font-size:14.5px}
+.daily li em{font-style:normal;color:var(--muted);font-size:12px;min-width:68px;text-transform:uppercase;letter-spacing:.6px;padding-top:2px}
+.daily .incl{margin-top:10px;font-size:12.5px;color:var(--muted)}
+
+/* ---------- Recomendados ---------- */
+.sec-t{font-family:var(--serif);font-size:22px;font-weight:600;margin:28px 2px 12px;display:flex;align-items:center;gap:10px}
+.sec-t::after{content:"";flex:1;height:1px;background:var(--line)}
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;margin:0 -16px;padding-left:16px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.feat{flex:0 0 200px;scroll-snap-align:start;border:0;text-align:left;padding:0;background:var(--surface);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+.feat .art{height:110px;display:grid;place-items:center;font-size:46px}
+.feat .tx{padding:11px 13px 13px}
+.feat b{display:block;font-size:14.5px}
+.feat span{color:var(--coral);font-weight:800;font-size:14px}
+
+/* ---------- Barra fija ---------- */
+.bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);margin:18px -16px 0;padding:10px 16px 8px;border-bottom:1px solid transparent;transition:border-color .2s}
+.bar.stuck{border-color:var(--line)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search input{flex:1;border:0;background:none;padding:11px 0;font-size:15px;color:var(--ink);outline:none}
+.filters{display:flex;gap:6px;margin-top:8px}
+.filters button{border:1px solid var(--line);background:var(--surface);padding:6px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+.filters button.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.cats{display:flex;gap:6px;overflow-x:auto;margin-top:8px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-weight:700;font-size:13.5px;padding:7px 12px;border-radius:10px}
+.cats a.on{color:var(--ink);background:var(--surface);box-shadow:var(--shadow)}
+
+/* ---------- Platos ---------- */
+section{scroll-margin-top:150px}
+.cat-h{display:flex;align-items:center;gap:10px;margin:26px 2px 10px}
+.cat-h .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:20px}
+.cat-h h2{font-family:var(--serif);font-size:23px;font-weight:600;margin:0}
+.cat-h p{margin:0;color:var(--muted);font-size:12.5px}
+.list{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.dish{display:flex;gap:12px;width:100%;border:0;background:none;text-align:left;padding:15px 16px;border-top:1px solid var(--line);align-items:flex-start}
+.dish:first-child{border-top:0}
+.dish:active{background:color-mix(in srgb,var(--line) 40%,transparent)}
+.dish .tx{flex:1;min-width:0}
+.dish h3{margin:0;font-size:15.5px;font-weight:650;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.dish p{margin:3px 0 0;color:var(--muted);font-size:13.5px;line-height:1.4}
+.badge{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:6px}
+.b-star{background:color-mix(in srgb,var(--coral) 14%,transparent);color:var(--coral)}
+.b-new{background:color-mix(in srgb,var(--gold) 22%,transparent);color:#8a6a24}
+.alg{display:flex;gap:4px;margin-top:7px}
+.alg span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:var(--bg);border:1px solid var(--line)}
+.pr{text-align:right;white-space:nowrap;display:grid;gap:3px;justify-items:end}
+.pr div{font-weight:800;font-size:15px}
+.pr small{font-weight:600;color:var(--muted);font-size:11px;margin-right:4px}
+.empty{text-align:center;color:var(--muted);padding:40px 0;display:none}
+
+/* ---------- Ficha (bottom sheet) ---------- */
+.veil{position:fixed;inset:0;background:rgba(10,8,6,.45);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-width:680px;margin:0 auto;background:var(--surface);border-radius:24px 24px 0 0;
+  padding:10px 20px calc(24px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.open .veil{opacity:1;pointer-events:auto}.open .sheet{transform:none}
+.grip{width:40px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 14px}
+.sheet .art{height:130px;border-radius:16px;display:grid;place-items:center;font-size:64px}
+.sheet h3{font-family:var(--serif);font-size:24px;margin:14px 0 4px}
+.sheet p{color:var(--muted);margin:0 0 12px;line-height:1.5}
+.sheet .rows{display:grid;gap:8px;margin:12px 0}
+.sheet .row{display:flex;justify-content:space-between;background:var(--bg);border-radius:12px;padding:11px 14px;font-weight:600}
+.sheet .row b{color:var(--coral)}
+.sheet .al{display:flex;flex-wrap:wrap;gap:6px}
+.sheet .al span{font-size:12.5px;background:var(--bg);border:1px solid var(--line);padding:5px 9px;border-radius:999px}
+.sheet .pair{margin-top:12px;font-size:13.5px;background:color-mix(in srgb,var(--gold) 14%,transparent);border-radius:12px;padding:10px 12px}
+.sheet .close{position:absolute;right:14px;top:12px;border:0;background:var(--bg);width:34px;height:34px;border-radius:50%;font-size:16px}
+
+/* ---------- Pie ---------- */
+.legend{margin:22px 4px 0;font-size:12px;color:var(--muted);line-height:1.7}
+.legend span{white-space:nowrap;margin-right:10px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.actions a{display:flex;justify-content:center;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14.5px;padding:14px;border-radius:14px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.actions a.wa{background:#1f9d55;border-color:#1f9d55;color:#fff;grid-column:1/-1}
+.info{text-align:center;color:var(--muted);font-size:13px;line-height:1.7;margin-top:22px}
+.credit{text-align:center;font-size:11.5px;color:var(--muted);margin-top:18px;opacity:.8}
+.credit a{color:inherit;font-weight:700}
+
+.fade{animation:fade .45s both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header style="position:relative">
-  <div class="lang"><button data-l="es" class="on">ES</button><button data-l="en">EN</button></div>
-  <h1>Taberna El Levante</h1>
-  <p data-t="tagline">Cocina gaditana · Desde 1987</p>
+
+<header class="hero">
+  <div class="top">
+    <span class="status" id="status"><i></i><span></span></span>
+    <div class="lang" role="group" aria-label="Idioma"><button data-l="es" class="on">ES</button><button data-l="en">EN</button></div>
+  </div>
+  <div class="brand">
+    <div class="logo">EL</div>
+    <small data-t="since">Desde 1987</small>
+    <h1>Taberna El Levante</h1>
+    <p data-t="tagline">Cocina gaditana de mercado</p>
+    <div class="chips">
+      <a href="#" onclick="return false">📍 La Viña, Cádiz</a>
+      <a href="#pescados">🐟 <span data-t="reviews">Pescado de lonja</span></a>
+    </div>
+  </div>
 </header>
 
-<div class="wrap">
-  <div class="daily"><small data-t="dailyLabel">Menú del día · 12,50 €</small><div data-t="dailyText">Ajo caliente · Atún encebollado · Postre casero, pan y bebida</div></div>
-  <input class="search" id="q" type="search" placeholder="Buscar plato…">
-  <nav id="nav"></nav>
-  <div id="menu"></div>
-  <div class="empty" id="empty" data-t="empty">No hay platos que coincidan.</div>
-  <p class="legend" data-t="legend">Pregunta al personal por alérgenos. Precios con IVA incluido.</p>
-</div>
+<main>
+  <div class="daily fade">
+    <div class="daily-h"><b data-t="dailyT">Menú del día</b><span id="dailyP"></span></div>
+    <ol id="dailyL"></ol>
+    <div class="incl" data-t="dailyInc">Incluye pan, bebida y postre o café · De martes a viernes al mediodía</div>
+  </div>
 
-<footer>
-  📍 Barrio de La Viña, Cádiz<br>
-  🕑 <span data-t="hours">Mar–Dom · 12:30–16:30 y 20:00–00:00</span><br>
-  <a href="#" onclick="return false">📞 Reservar por WhatsApp</a>
-</footer>
+  <div class="sec-t" data-t="featT">Recomendados de la casa</div>
+  <div class="rail" id="rail"></div>
+
+  <div class="bar" id="bar">
+    <label class="search"><span aria-hidden="true">🔍</span><input id="q" type="search" autocomplete="off"></label>
+    <div class="filters">
+      <button data-f="veg">🌱 <span data-t="fVeg">Vegetariano</span></button>
+      <button data-f="gf">🌾 <span data-t="fGf">Sin gluten</span></button>
+    </div>
+    <nav class="cats" id="cats"></nav>
+  </div>
+
+  <div id="menu"></div>
+  <div class="empty" id="empty"></div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="actions">
+    <a class="wa" href="#" onclick="return false">💬 <span data-t="book">Reservar por WhatsApp</span></a>
+    <a href="#" onclick="return false">📞 <span data-t="call">Llamar</span></a>
+    <a href="#" onclick="return false">🗺️ <span data-t="map">Cómo llegar</span></a>
+  </div>
+  <div class="info">
+    <span data-t="hours">Martes a domingo · 12:30–16:30 y 20:00–00:00</span><br>
+    <span data-t="vat">Precios con IVA incluido. Consulta al personal por alérgenos.</span>
+  </div>
+  <div class="credit"><span data-t="credit">Carta digital por</span> <a href="https://dangonrey.github.io/mesaqr/" target="_blank" rel="noopener">MesaQR</a></div>
+</main>
+
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 
 <script>
-const T = {
-  es:{tagline:"Cocina gaditana · Desde 1987",dailyLabel:"Menú del día · 12,50 €",dailyText:"Ajo caliente · Atún encebollado · Postre casero, pan y bebida",
-      search:"Buscar plato…",empty:"No hay platos que coincidan.",legend:"Pregunta al personal por alérgenos. Precios con IVA incluido.",
-      hours:"Mar–Dom · 12:30–16:30 y 20:00–00:00",tapa:"tapa",racion:"ración",star:"★ De la casa",veg:"Vegetariano"},
-  en:{tagline:"Cádiz cuisine · Since 1987",dailyLabel:"Today's set menu · €12.50",dailyText:"Garlic soup · Tuna with onions · Homemade dessert, bread & drink",
-      search:"Search dishes…",empty:"No matching dishes.",legend:"Ask our staff about allergens. Prices include VAT.",
-      hours:"Tue–Sun · 12:30–16:30 & 20:00–00:00",tapa:"tapa",racion:"portion",star:"★ House special",veg:"Vegetarian"}
+/* ===== Textos de la interfaz ===== */
+const T={
+ es:{since:"Desde 1987",tagline:"Cocina gaditana de mercado",reviews:"Pescado de lonja",dailyT:"Menú del día",dailyInc:"Incluye pan, bebida y postre o café · De martes a viernes al mediodía",
+     featT:"Recomendados de la casa",search:"Busca un plato o ingrediente…",fVeg:"Vegetariano",fGf:"Sin gluten",empty:"No hay platos que coincidan.",
+     book:"Reservar por WhatsApp",call:"Llamar",map:"Cómo llegar",hours:"Martes a domingo · 12:30–16:30 y 20:00–00:00",vat:"Precios con IVA incluido. Consulta al personal por alérgenos.",
+     credit:"Carta digital por",open:"Abierto ahora",closed:"Cerrado ahora",opens:"Abre a las",tapa:"Tapa",media:"Media",racion:"Ración",price:"Precio",
+     star:"De la casa",nw:"Nuevo",allergens:"Alérgenos",noAlg:"Sin alérgenos declarados",pair:"Marida con",first:"Primero",second:"Segundo",dessert:"Postre",legend:"Alérgenos:"},
+ en:{since:"Since 1987",tagline:"Cádiz market cuisine",reviews:"Fresh market fish",dailyT:"Set menu of the day",dailyInc:"Bread, drink and dessert or coffee included · Tuesday to Friday, lunchtime",
+     featT:"House favourites",search:"Search a dish or ingredient…",fVeg:"Vegetarian",fGf:"Gluten-free",empty:"No matching dishes.",
+     book:"Book on WhatsApp",call:"Call",map:"Directions",hours:"Tuesday to Sunday · 12:30–16:30 & 20:00–00:00",vat:"Prices include VAT. Ask our staff about allergens.",
+     credit:"Digital menu by",open:"Open now",closed:"Closed now",opens:"Opens at",tapa:"Tapa",media:"Half",racion:"Portion",price:"Price",
+     star:"House special",nw:"New",allergens:"Allergens",noAlg:"No declared allergens",pair:"Pairs with",first:"Starter",second:"Main",dessert:"Dessert",legend:"Allergens:"}
 };
-const A = {g:{es:"Gluten",en:"Gluten"},p:{es:"Pescado",en:"Fish"},h:{es:"Huevo",en:"Egg"},l:{es:"Lácteos",en:"Dairy"},m:{es:"Marisco",en:"Shellfish"},f:{es:"Frutos secos",en:"Nuts"}};
-const MENU = [
- {cat:{es:"Tapas",en:"Tapas"},items:[
-  {n:{es:"Tortillitas de camarones",en:"Shrimp fritters"},d:{es:"Crujientes, como en Sanlúcar",en:"Crispy, Sanlúcar style"},tapa:2.8,rac:9,a:"gm",star:1},
-  {n:{es:"Papas aliñás",en:"Dressed potatoes"},d:{es:"Con cebolleta, perejil y AOVE",en:"With spring onion, parsley & olive oil"},tapa:2.5,rac:7,a:"",veg:1},
-  {n:{es:"Chicharrones de Cádiz",en:"Cádiz-style pork belly"},d:{es:"Con limón y sal gorda",en:"With lemon and sea salt"},tapa:2.8,rac:8.5,a:""},
-  {n:{es:"Croquetas de puchero",en:"Stew croquettes"},d:{es:"Caseras, 6 unidades la ración",en:"Homemade, 6 per portion"},tapa:2.5,rac:8,a:"glh"}
+/* Alérgenos (los 14 oficiales que se usan aquí) */
+const ALG={g:["🌾","Gluten","Gluten"],c:["🦐","Crustáceos","Crustaceans"],h:["🥚","Huevo","Egg"],p:["🐟","Pescado","Fish"],l:["🥛","Lácteos","Dairy"],
+  f:["🌰","Frutos secos","Nuts"],m:["🐙","Moluscos","Molluscs"],s:["🍷","Sulfitos","Sulphites"],a:["🌿","Apio","Celery"]};
+
+/* ===== Datos (lo que cambia el dueño) ===== */
+const DAILY={price:12.5,items:[
+ ["first",{es:"Ajo caliente o salmorejo",en:"Warm garlic soup or salmorejo"}],
+ ["second",{es:"Atún encebollado o carrillada al oloroso",en:"Tuna with onions or pork cheek in sherry"}],
+ ["dessert",{es:"Tocino de cielo o fruta",en:"Egg custard or fruit"}]]};
+
+const MENU=[
+ {id:"tapas",ic:"🥘",bg:"#fde9df",cat:{es:"Tapas",en:"Tapas"},sub:{es:"Para picar y compartir",en:"To nibble and share"},items:[
+  {n:{es:"Tortillitas de camarones",en:"Shrimp fritters"},d:{es:"Finas y crujientes, al estilo de Sanlúcar",en:"Thin and crispy, Sanlúcar style"},p:{tapa:2.8,racion:9},a:"gc",star:1,pair:{es:"Manzanilla",en:"Manzanilla sherry"}},
+  {n:{es:"Papas aliñás",en:"Dressed potatoes"},d:{es:"Cebolleta, perejil, vinagre de Jerez y AOVE",en:"Spring onion, parsley, sherry vinegar & olive oil"},p:{tapa:2.5,racion:7},a:"s",veg:1},
+  {n:{es:"Chicharrones de Cádiz",en:"Cádiz-style pork belly"},d:{es:"Con limón y sal en escamas",en:"With lemon and flaky salt"},p:{tapa:2.8,racion:8.5},a:"",gf:1},
+  {n:{es:"Croquetas de puchero",en:"Stew croquettes"},d:{es:"Caseras, cremosas por dentro",en:"Homemade, creamy inside"},p:{tapa:2.5,racion:8},a:"glh"},
+  {n:{es:"Queso payoyo curado",en:"Aged Payoyo cheese"},d:{es:"De la Sierra de Grazalema, con picos",en:"From the Grazalema mountains, with breadsticks"},p:{media:7,racion:12},a:"lg",veg:1,nw:1}
  ]},
- {cat:{es:"Pescados",en:"Fish"},items:[
-  {n:{es:"Atún rojo encebollado",en:"Bluefin tuna with onions"},d:{es:"Atún de almadraba guisado lentamente",en:"Slow-cooked almadraba tuna"},rac:16,a:"p",star:1},
-  {n:{es:"Pescaíto frito variado",en:"Mixed fried fish"},d:{es:"Boquerones, cazón en adobo, choco y puntillitas",en:"Anchovies, marinated dogfish, cuttlefish & baby squid"},rac:15,a:"gpm"},
-  {n:{es:"Urta a la roteña",en:"Rota-style sea bream"},d:{es:"Con tomate, pimiento y vino blanco",en:"With tomato, pepper and white wine"},rac:19,a:"p"}
+ {id:"pescados",ic:"🐟",bg:"#dff0f3",cat:{es:"Del mar",en:"From the sea"},sub:{es:"Pescado de la lonja de Cádiz",en:"Fish from the Cádiz market"},items:[
+  {n:{es:"Atún rojo encebollado",en:"Bluefin tuna with onions"},d:{es:"Atún de almadraba guisado a fuego lento",en:"Wild almadraba tuna, slow-cooked"},p:{media:9,racion:16},a:"ps",star:1,gf:1,pair:{es:"Blanco de la Tierra de Cádiz",en:"Cádiz white wine"}},
+  {n:{es:"Pescaíto frito variado",en:"Mixed fried fish"},d:{es:"Boquerones, cazón en adobo, choco y puntillitas",en:"Anchovies, marinated dogfish, cuttlefish & baby squid"},p:{media:9,racion:15},a:"gpm",pair:{es:"Fino",en:"Fino sherry"}},
+  {n:{es:"Urta a la roteña",en:"Rota-style sea bream"},d:{es:"Con tomate, pimiento y vino blanco",en:"With tomato, peppers and white wine"},p:{racion:19},a:"ps",gf:1},
+  {n:{es:"Zamburiñas a la plancha",en:"Grilled queen scallops"},d:{es:"Con ajo y perejil",en:"With garlic and parsley"},p:{tapa:4,racion:12},a:"m",gf:1}
  ]},
- {cat:{es:"Carnes",en:"Meat"},items:[
-  {n:{es:"Carrillada ibérica al oloroso",en:"Iberian pork cheek in sherry"},d:{es:"Con papas fritas caseras",en:"With homemade chips"},rac:14,a:""},
-  {n:{es:"Secreto ibérico a la brasa",en:"Grilled Iberian secreto"},d:{es:"Con pimientos de padrón",en:"With padrón peppers"},rac:16.5,a:""}
+ {id:"carnes",ic:"🍖",bg:"#f6e4d6",cat:{es:"Carnes",en:"Meat"},sub:{es:"Ibérico y a la brasa",en:"Iberian pork, chargrilled"},items:[
+  {n:{es:"Carrillada ibérica al oloroso",en:"Iberian pork cheek in sherry"},d:{es:"Con papas fritas caseras",en:"With homemade chips"},p:{media:8,racion:14},a:"sa",pair:{es:"Oloroso",en:"Oloroso sherry"}},
+  {n:{es:"Secreto ibérico a la brasa",en:"Chargrilled Iberian secreto"},d:{es:"Con pimientos de padrón",en:"With padrón peppers"},p:{racion:16.5},a:"",gf:1}
  ]},
- {cat:{es:"Postres",en:"Desserts"},items:[
-  {n:{es:"Tocino de cielo",en:"Tocino de cielo (egg custard)"},d:{es:"Receta de la abuela",en:"Grandma's recipe"},rac:4.5,a:"h",veg:1},
-  {n:{es:"Tarta de queso payoyo",en:"Payoyo cheesecake"},d:{es:"Con mermelada de higos",en:"With fig jam"},rac:5.5,a:"glh",veg:1,star:1}
+ {id:"postres",ic:"🍮",bg:"#fbecc9",cat:{es:"Postres",en:"Desserts"},sub:{es:"Caseros, hechos aquí",en:"Homemade, made here"},items:[
+  {n:{es:"Tocino de cielo",en:"Tocino de cielo (egg custard)"},d:{es:"Receta de la abuela",en:"Grandma's recipe"},p:{price:4.5},a:"h",veg:1,gf:1},
+  {n:{es:"Tarta de queso payoyo",en:"Payoyo cheesecake"},d:{es:"Con mermelada de higos",en:"With fig jam"},p:{price:5.5},a:"glh",veg:1,star:1}
  ]},
- {cat:{es:"Bebidas",en:"Drinks"},items:[
-  {n:{es:"Caña",en:"Small draught beer"},d:{es:"",en:""},rac:1.8,a:"g"},
-  {n:{es:"Manzanilla (copa)",en:"Manzanilla sherry (glass)"},d:{es:"",en:""},rac:2.5,a:""},
-  {n:{es:"Tinto de verano",en:"Tinto de verano"},d:{es:"",en:""},rac:2.8,a:""},
-  {n:{es:"Refresco / agua",en:"Soft drink / water"},d:{es:"",en:""},rac:2,a:""}
+ {id:"bebidas",ic:"🍷",bg:"#efe2ea",cat:{es:"Vinos y bebidas",en:"Wines & drinks"},sub:{es:"Vinos del Marco de Jerez",en:"Wines from the Sherry region"},items:[
+  {n:{es:"Manzanilla (copa)",en:"Manzanilla sherry (glass)"},d:{es:"Sanlúcar de Barrameda",en:"Sanlúcar de Barrameda"},p:{price:2.5},a:"s",veg:1,gf:1},
+  {n:{es:"Fino (copa)",en:"Fino sherry (glass)"},d:{es:"El Puerto de Santa María",en:"El Puerto de Santa María"},p:{price:2.5},a:"s",veg:1,gf:1},
+  {n:{es:"Caña",en:"Small draught beer"},d:{es:"",en:""},p:{price:1.8},a:"g",veg:1},
+  {n:{es:"Tinto de verano",en:"Tinto de verano"},d:{es:"Vino tinto con gaseosa de limón",en:"Red wine with lemon soda"},p:{price:2.8},a:"s",veg:1,gf:1}
  ]}
 ];
 
-let lang = "es";
-const eur = v => lang==="es" ? v.toFixed(2).replace(".",",")+" €" : "€"+v.toFixed(2);
+/* ===== Lógica ===== */
+let lang=localStorage.getItem("lang")||((navigator.language||"es").startsWith("es")?"es":"en");
+const filt={veg:false,gf:false}; let first=true;
+const $=s=>document.querySelector(s);
+const eur=v=>lang==="es"?v.toFixed(2).replace(".",",")+" €":"€"+v.toFixed(2);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const all=MENU.flatMap(c=>c.items.map(it=>({...it,c})));
+
+function prices(p){return Object.entries(p).map(([k,v])=>`<div>${k!=="price"?`<small>${T[lang][k]}</small>`:""}${eur(v)}</div>`).join("")}
+function algs(a){return [...a].map(k=>`<span title="${ALG[k][lang==="es"?1:2]}">${ALG[k][0]}</span>`).join("")}
 
 function render(){
-  const q = document.getElementById("q").value.trim().toLowerCase();
-  const nav = document.getElementById("nav"), menu = document.getElementById("menu");
-  nav.innerHTML = ""; menu.innerHTML = ""; let shown = 0;
-  MENU.forEach((c,i)=>{
-    const items = c.items.filter(it => !q || (it.n[lang]+" "+it.d[lang]).toLowerCase().includes(q));
-    if(!items.length) return;
-    shown += items.length;
-    nav.insertAdjacentHTML("beforeend",`<a href="#c${i}">${c.cat[lang]}</a>`);
-    menu.insertAdjacentHTML("beforeend",`<section><h2 id="c${i}">${c.cat[lang]}</h2>${items.map(it=>`
-      <div class="item"><div>
-        <h3>${it.n[lang]}</h3>${it.d[lang]?`<p>${it.d[lang]}</p>`:""}
-        <div class="tags">${it.star?`<span class="tag star">${T[lang].star}</span>`:""}${it.veg?`<span class="tag veg">${T[lang].veg}</span>`:""}${[...it.a].map(k=>`<span class="tag">${A[k][lang]}</span>`).join("")}</div>
-      </div><div class="price">${it.tapa?`${eur(it.tapa)}<small>${T[lang].tapa}</small>${eur(it.rac)}<small>${T[lang].racion}</small>`:eur(it.rac)}</div></div>`).join("")}</section>`);
+  const t=T[lang], q=$("#q").value.trim().toLowerCase();
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t[el.dataset.t]);
+  $("#q").placeholder=t.search; $("#empty").textContent=t.empty;
+  $("#dailyP").textContent=eur(DAILY.price);
+  $("#dailyL").innerHTML=DAILY.items.map(([k,v])=>`<li><em>${t[k]}</em><span>${v[lang]}</span></li>`).join("");
+  $("#rail").innerHTML=all.filter(i=>i.star).map(i=>`<button class="feat" data-id="${all.indexOf(i)}">
+     <div class="art" style="background:${i.c.bg}">${i.c.ic}</div><div class="tx"><b>${i.n[lang]}</b><span>${eur(Object.values(i.p).at(-1))}</span></div></button>`).join("");
+  let html="",nav="",n=0;
+  MENU.forEach(c=>{
+    const items=c.items.filter(i=>(!filt.veg||i.veg)&&(!filt.gf||(i.gf||!i.a.includes("g")))&&(!q||(i.n[lang]+" "+i.d[lang]).toLowerCase().includes(q)));
+    if(!items.length)return; n+=items.length;
+    nav+=`<a href="#${c.id}">${c.cat[lang]}</a>`;
+    html+=`<section id="${c.id}" class="${first?"fade":""}"><div class="cat-h"><div class="ic" style="background:${c.bg}">${c.ic}</div><div><h2>${c.cat[lang]}</h2><p>${c.sub[lang]}</p></div></div>
+      <div class="list">${items.map(i=>`<button class="dish" data-id="${all.findIndex(x=>x.n.es===i.n.es)}">
+        <div class="tx"><h3>${i.n[lang]}${i.star?`<span class="badge b-star">${t.star}</span>`:""}${i.nw?`<span class="badge b-new">${t.nw}</span>`:""}</h3>
+        ${i.d[lang]?`<p>${i.d[lang]}</p>`:""}${i.a?`<div class="alg">${algs(i.a)}</div>`:""}</div>
+        <div class="pr">${prices(i.p)}</div></button>`).join("")}</div></section>`;
   });
-  document.getElementById("empty").style.display = shown ? "none" : "block";
-  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=T[lang][el.dataset.t]);
-  document.getElementById("q").placeholder = T[lang].search;
-  spy();
+  $("#menu").innerHTML=html; $("#cats").innerHTML=nav; $("#empty").style.display=n?"none":"block";
+  $("#legend").innerHTML=`<b>${t.legend}</b> `+Object.values(ALG).map(a=>`<span>${a[0]} ${a[lang==="es"?1:2]}</span>`).join("");
+  status(); spy();
 }
+
+function openDish(i){
+  const t=T[lang], d=all[i];
+  $("#sheet").innerHTML=`<div class="grip"></div><button class="close" aria-label="Cerrar">✕</button>
+   <div class="art" style="background:${d.c.bg}">${d.c.ic}</div>
+   <h3>${d.n[lang]}</h3>${d.d[lang]?`<p>${d.d[lang]}</p>`:""}
+   <div class="rows">${Object.entries(d.p).map(([k,v])=>`<div class="row"><span>${k==="price"?t.price:t[k]}</span><b>${eur(v)}</b></div>`).join("")}</div>
+   <div style="font-weight:700;font-size:13px;margin-bottom:6px">${t.allergens}</div>
+   <div class="al">${d.a?[...d.a].map(k=>`<span>${ALG[k][0]} ${ALG[k][lang==="es"?1:2]}</span>`).join(""):`<span>${t.noAlg}</span>`}</div>
+   ${d.pair?`<div class="pair">🍷 ${t.pair}: <b>${d.pair[lang]}</b></div>`:""}`;
+  document.body.classList.add("open");
+}
+function closeDish(){document.body.classList.remove("open")}
+
+function status(){
+  const now=new Date(), day=now.getDay(), m=now.getHours()*60+now.getMinutes();
+  const slots=[[750,990],[1200,1440]], openDay=day!==1;
+  const isOpen=openDay&&slots.some(([a,b])=>m>=a&&m<b);
+  const el=$("#status"); el.classList.toggle("closed",!isOpen);
+  let txt=isOpen?T[lang].open:T[lang].closed;
+  if(!isOpen&&openDay){const nx=slots.find(([a])=>m<a); if(nx) txt+=` · ${T[lang].opens} ${String(nx[0]/60|0).padStart(2,"0")}:${String(nx[0]%60).padStart(2,"0")}`;}
+  el.querySelector("span").textContent=txt;
+}
+
 function spy(){
-  const links=[...document.querySelectorAll("nav a")]; let cur=links[0];
-  links.forEach(a=>{const s=document.querySelector(a.getAttribute("href")); if(s && s.getBoundingClientRect().top<90) cur=a;});
-  links.forEach(a=>a.classList.toggle("active",a===cur));
+  const links=[...document.querySelectorAll("#cats a")]; let cur=links[0];
+  links.forEach(a=>{const s=document.getElementById(a.hash.slice(1)); if(s&&s.getBoundingClientRect().top<170)cur=a;});
+  links.forEach(a=>a.classList.toggle("on",a===cur));
+  if(cur&&cur.classList.contains("on")) cur.scrollIntoView({block:"nearest",inline:"nearest"});
+  $("#bar").classList.toggle("stuck",$("#bar").getBoundingClientRect().top<=0);
 }
-document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{
-  lang=b.dataset.l; document.documentElement.lang=lang;
-  document.querySelectorAll(".lang button").forEach(x=>x.classList.toggle("on",x===b)); render();
+
+document.addEventListener("click",e=>{
+  const d=e.target.closest("[data-id]"); if(d){openDish(+d.dataset.id);return;}
+  if(e.target.closest(".close")||e.target.id==="veil")closeDish();
+  const l=e.target.closest(".lang button");
+  if(l){lang=l.dataset.l;localStorage.setItem("lang",lang);document.documentElement.lang=lang;
+        document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b===l));closeDish();render();}
+  const f=e.target.closest(".filters button");
+  if(f){filt[f.dataset.f]=!filt[f.dataset.f];f.classList.toggle("on");render();}
 });
-document.getElementById("q").oninput = render;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDish()});
+$("#q").addEventListener("input",render);
 addEventListener("scroll",spy,{passive:true});
-render();
+document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
+document.documentElement.lang=lang;
+render(); first=false; setInterval(status,60000);
 </script>
 </body>
 </html>
