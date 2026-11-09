@@ -309,8 +309,10 @@ function status(){
 function spy(){
   const links=[...document.querySelectorAll("#cats a")]; let cur=links[0];
   links.forEach(a=>{const s=document.getElementById(a.hash.slice(1)); if(s&&s.getBoundingClientRect().top<170)cur=a;});
+  const prev=document.querySelector("#cats a.on");
   links.forEach(a=>a.classList.toggle("on",a===cur));
-  if(cur&&cur.classList.contains("on")) cur.scrollIntoView({block:"nearest",inline:"nearest"});
+  /* Desplaza solo la barra de categorías en horizontal (nunca la página) */
+  if(cur&&cur!==prev){const nav=$("#cats"); nav.scrollTo({left:Math.max(0,cur.offsetLeft-nav.offsetLeft-16),behavior:"smooth"});}
   $("#bar").classList.toggle("stuck",$("#bar").getBoundingClientRect().top<=0);
 }
 
